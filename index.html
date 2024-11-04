@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Git y su Uso con GitHub</title>
+    <meta name="description" content="Presentación sobre Git y GitHub">
+    <meta name="author" content="Robespierre">
+
+    <!-- Importa el CSS de Reveal.js -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/night.css">
+
+    <!-- Estilos opcionales para el código -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/monokai.css">
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- 1. Portada -->
+        <section>
+            <h1>Git y su Uso con GitHub</h1>
+            <p>Robespierre Triviño</p>
+        </section>
+
+        <!-- 2. Índice -->
+        <section>
+            <h2>Índice</h2>
+            <ul>
+                <li>Introducción</li>
+                <li>Git: Conceptos Básicos</li>
+                <li>Instalación de Git</li>
+                <li>Comandos Básicos de Git</li>
+                <li>Ramas y Fusión</li>
+                <li>Introducción a GitHub</li>
+                <li>Configurando GitHub</li>
+                <li>Trabajando con Git y GitHub</li>
+                <li>Colaboración en GitHub</li>
+                <li>Buenas Prácticas y Consejos</li>
+                <li>Recursos Adicionales</li>
+            </ul>
+        </section>
+
+        <!-- 3. Introducción -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>¿Qué es el Control de Versiones?</h3>
+                <p>
+                    El control de versiones es un sistema que registra los cambios realizados sobre un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedas recuperar versiones específicas más adelante.
+                </p>
+                <ul>
+                    <li>Mantiene un historial completo de cambios.</li>
+                    <li>Permite revertir archivos a estados anteriores.</li>
+                    <li>Facilita el trabajo colaborativo.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Importancia en el Desarrollo de Software</h3>
+                <p>
+                    En proyectos de software, múltiples desarrolladores trabajan en el mismo código fuente. El control de versiones ayuda a coordinar el trabajo y a evitar conflictos.
+                </p>
+                <ul>
+                    <li>Mejora la colaboración entre equipos.</li>
+                    <li>Permite experimentar sin riesgo.</li>
+                    <li>Facilita la identificación de errores.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Problemas sin Control de Versiones</h3>
+                <p>
+                    Sin un sistema de control de versiones, el desarrollo puede volverse caótico y propenso a errores.
+                </p>
+                <ul>
+                    <li>Sobrescritura accidental de archivos.</li>
+                    <li>Dificultad para rastrear cambios y su autoría.</li>
+                    <li>Falta de respaldo en caso de errores.</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- 4. Git: Conceptos Básicos -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>¿Qué es Git?</h3>
+                <p>
+                    Git es un sistema de control de versiones distribuido, gratuito y de código abierto, diseñado para manejar todo tipo de proyectos con velocidad y eficiencia.
+                </p>
+                <ul>
+                    <li>Creado por Linus Torvalds en 2005.</li>
+                    <li>Permite que cada desarrollador tenga una copia completa del historial del proyecto.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Características Clave de Git</h3>
+                <ul>
+                    <li><strong>Distribuido:</strong> Cada copia es un repositorio completo.</li>
+                    <li><strong>Rápido:</strong> Operaciones locales y eficientes.</li>
+                    <li><strong>Seguro:</strong> Historial inmutable y verificación de integridad.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Cómo Funciona Git</h3>
+                <p>
+                    Git maneja los datos como un conjunto de instantáneas (snapshots) del proyecto a lo largo del tiempo.
+                </p>
+                <ul>
+                    <li><strong>Repositorio Local:</strong> Tu copia en tu máquina.</li>
+                    <li><strong>Repositorio Remoto:</strong> Copia compartida en un servidor.</li>
+                    <li><strong>Snapshots:</strong> Estado del proyecto en un momento dado.</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- 5. Instalación de Git -->
+        <section>
+            <p>
+                Git se puede instalar en múltiples sistemas operativos. A continuación, se muestran los pasos básicos para cada uno.
+            </p>
+            <!-- Subsección -->
+            <section>
+                <h3>Windows</h3>
+                <ul>
+                    <li>Descarga el instalador desde <a href="https://git-scm.com/download/win">git-scm.com/download/win</a>.</li>
+                    <li>Ejecuta el instalador y sigue las instrucciones.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>macOS</h3>
+                <ul>
+                    <li>Usa Homebrew: `brew install git`.</li>
+                    <li>O descarga el paquete desde <a href="https://git-scm.com/download/mac">git-scm.com/download/mac</a>.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Linux</h3>
+                <ul>
+                    <li>Debian/Ubuntu: `sudo apt-get install git`.</li>
+                    <li>Fedora: `sudo dnf install git`.</li>
+                    <li>Arch: `sudo pacman -S git`.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Configuración Inicial</h3>
+                <p>
+                    Después de la instalación, configura tu nombre de usuario y correo electrónico:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git config --global user.name "Tu Nombre"
+git config --global user.email "tuemail@example.com"</code></pre>
+            </section>
+        </section>
+
+        <!-- 6. Comandos Básicos de Git -->
+        <section>
+            <!-- Subsección con fragmentos -->
+            <section>
+                <h3>Iniciando un Repositorio</h3>
+                <p>
+                    Para iniciar un nuevo repositorio en un directorio existente:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git init</code></pre>
+            </section>
+            <section>
+                <h3>Seguimiento de Archivos</h3>
+                <p>
+                    Agrega archivos al área de preparación (staging area):
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git add archivo.txt</code></pre>
+                <p>
+                    Verifica el estado de los archivos:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git status</code></pre>
+            </section>
+            <section>
+                <h3>Realizando Commits</h3>
+                <p>
+                    Guarda los cambios en el repositorio:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git commit -m "Mensaje descriptivo"</code></pre>
+            </section>
+            <section>
+                <h3>Visualizando el Historial</h3>
+                <p>
+                    Muestra el historial de commits:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git log</code></pre>
+            </section>
+        </section>
+
+        <!-- 7. Ramas y Fusión -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>Concepto de Ramas</h3>
+                <p>
+                    Las ramas permiten desarrollar funcionalidades aisladas unas de otras.
+                </p>
+                <ul>
+                    <li>Facilita el trabajo en paralelo.</li>
+                    <li>Permite experimentar sin afectar la rama principal.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Comandos de Ramas</h3>
+                <p>
+                    Crear una nueva rama:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git branch nueva-rama</code></pre>
+                <p>
+                    Cambiar a una rama existente:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git checkout nueva-rama</code></pre>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Fusión de Ramas</h3>
+                <p>
+                    Fusiona los cambios de una rama en la rama actual:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git merge nombre-de-la-rama</code></pre>
+                <p>
+                    Si hay conflictos, Git te indicará cuáles archivos necesitan ser resueltos manualmente.
+                </p>
+            </section>
+        </section>
+
+        <!-- 8. Introducción a GitHub -->
+        <section>
+            <p>
+                GitHub es una plataforma de alojamiento de código que permite a los desarrolladores colaborar en proyectos utilizando Git.
+            </p>
+            <ul>
+                <li>Ofrece repositorios remotos para compartir código.</li>
+                <li>Incluye herramientas para gestión de proyectos.</li>
+                <li>Facilita la colaboración y revisión de código.</li>
+            </ul>
+            <p>
+                <strong>Git vs GitHub:</strong> Git es una herramienta de control de versiones, mientras que GitHub es un servicio que aloja repositorios Git y ofrece funcionalidades adicionales.
+            </p>
+        </section>
+
+        <!-- 9. Configurando GitHub -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>Creación de una Cuenta</h3>
+                <p>
+                    Regístrate en <a href="https://github.com/">github.com</a> para crear una cuenta gratuita.
+                </p>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Configuración de Claves SSH</h3>
+                <p>
+                    Las claves SSH permiten autenticarte sin necesidad de ingresar tu usuario y contraseña cada vez.
+                </p>
+                <ol>
+                    <li>Genera una clave SSH en tu máquina:
+                        <pre><code data-trim contenteditable style="font-size: 1.2em;">ssh-keygen -t ed25519 -C "tuemail@example.com"</code></pre>
+                    </li>
+                    <li>Copia la clave pública y agrégala a tu cuenta de GitHub.</li>
+                </ol>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Autenticación con GitHub</h3>
+                <p>
+                    Después de configurar las claves SSH, puedes conectarte a GitHub de forma segura.
+                </p>
+            </section>
+        </section>
+
+        <!-- 10. Trabajando con Git y GitHub -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>Conectando Repositorios</h3>
+                <p>
+                    Para enlazar tu repositorio local con uno remoto en GitHub:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git remote add origin git@github.com:usuario/repositorio.git</code></pre>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Subiendo Cambios</h3>
+                <p>
+                    Para enviar tus commits al repositorio remoto:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git push -u origin master</code></pre>
+                <p>
+                    El flag `-u` establece `origin master` como la rama por defecto para `git push`.
+                </p>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Clonando Repositorios</h3>
+                <p>
+                    Para obtener una copia de un repositorio existente:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git clone git@github.com:usuario/repositorio.git</code></pre>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Actualizando el Repositorio Local</h3>
+                <p>
+                    Para actualizar tu repositorio local con los cambios del remoto:
+                </p>
+                <pre><code data-trim contenteditable style="font-size: 1.2em;">git pull</code></pre>
+            </section>
+        </section>
+
+        <!-- 11. Colaboración en GitHub -->
+        <section>
+            <!-- Subsección -->
+            <section>
+                <h3>Forks y Pull Requests</h3>
+                <p>
+                    Los forks permiten copiar un repositorio para trabajar en él sin afectar al original. Los pull requests se usan para proponer cambios al repositorio original.
+                </p>
+                <ol>
+                    <li>Realiza un fork del repositorio.</li>
+                    <li>Clona tu fork y realiza cambios.</li>
+                    <li>Envía un pull request al repositorio original.</li>
+                </ol>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Gestión de Issues</h3>
+                <p>
+                    Los issues son una forma de rastrear tareas, mejoras y errores para tu proyecto.
+                </p>
+                <ul>
+                    <li>Reportar bugs.</li>
+                    <li>Sugerir nuevas funcionalidades.</li>
+                    <li>Discutir implementaciones.</li>
+                </ul>
+            </section>
+            <!-- Subsección -->
+            <section>
+                <h3>Revisiones de Código</h3>
+                <p>
+                    Las revisiones permiten mejorar la calidad del código mediante comentarios y sugerencias antes de fusionar cambios.
+                </p>
+                <ul>
+                    <li>Comentarios línea por línea.</li>
+                    <li>Aprobación o solicitud de cambios.</li>
+                    <li>Discusión colaborativa.</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- 12. Buenas Prácticas y Consejos -->
+        <section>
+            <h2>Buenas Prácticas y Consejos</h2>
+            <ul>
+                <li><strong>Mensajes de Commit Claros:</strong> Describe qué cambiaste y por qué.</li>
+                <li><strong>Uso Efectivo de Ramas:</strong> Utiliza ramas para desarrollar nuevas características o corregir errores.</li>
+                <li><strong>Resolución de Conflictos:</strong> Comunícate con tu equipo y resuelve conflictos lo antes posible.</li>
+                <li><strong>Mantener el Repositorio Limpio:</strong> Elimina archivos innecesarios y utiliza `.gitignore` para excluir archivos temporales.</li>
+            </ul>
+        </section>
+
+        <!-- 13. Recursos Adicionales -->
+        <section>
+            <ul>
+                <li><a href="https://git-scm.com/doc">Documentación Oficial de Git</a></li>
+                <li><a href="https://docs.github.com/">Documentación de GitHub</a></li>
+                <li><a href="https://try.github.io/">Tutorial Interactivo de Git</a></li>
+                <li>Comunidades y Foros:
+                    <ul>
+                        <li><a href="https://stackoverflow.com/questions/tagged/git">Stack Overflow</a></li>
+                        <li><a href="https://www.reddit.com/r/git/">Reddit /r/git</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 14. Conclusión -->
+        <section>
+            <p>
+                Git y GitHub son herramientas esenciales en el desarrollo de software moderno. Facilitan el control de versiones, la colaboración y la gestión eficiente de proyectos.
+            </p>
+            <ul>
+                <li>Mejoran la productividad y la calidad del código.</li>
+                <li>Permiten trabajar en equipo de forma organizada.</li>
+                <li>Son ampliamente utilizadas en la industria.</li>
+            </ul>
+            <p>
+                ¡Comienza a utilizar Git y GitHub en tus proyectos y experimenta sus beneficios!
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<!-- Importa las bibliotecas de Reveal.js -->
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    Reveal.initialize({
+        hash: true,
+        plugins: [ RevealNotes, RevealHighlight ]
+    });
+</script>
+
+</body>
+</html>
